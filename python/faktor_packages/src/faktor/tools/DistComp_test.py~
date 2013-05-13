@@ -1,0 +1,5 @@
+from faktor.tools.DistComp import *
+
+obj = DistComp()
+
+obj.connect()

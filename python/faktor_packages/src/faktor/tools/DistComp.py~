@@ -1,0 +1,40 @@
+import mysql.connector
+
+class DistComp:
+    """A first attempt to job processing on different computers..."""
+
+    def __init__(self):
+        # mysql database connection properties
+        mysql_config = {
+            'user': 'dist_comp',
+            'password': 'mastering',
+            'host': '192.168.1.2',
+            'database': 'dist_comp',
+            }
+
+    def connect(self):
+        """Connect to the mysql database
+        """
+        try:
+            cnx = mysql.connector.connect(**config)
+            print("Sucess.")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("Something is wrong your username or password.")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database does not exist.")
+            else:
+                print(err)
+        else:
+            cursor=cnx.cursor()
+            
+            query = ("SELECT * FROM files")
+            
+            cursor.execute(query)
+
+            for filename in cursor:
+                print("{}".format(filename))
+
+                cursor.close()
+                cnx.close()
